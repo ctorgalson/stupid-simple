@@ -9,6 +9,11 @@ class Disclosure {
   /**
    * @member {boolean}
    */
+  defaultExpanded;
+
+  /**
+   * @member {boolean}
+   */
   enabled;
 
   /**
@@ -33,8 +38,9 @@ class Disclosure {
    */
   constructor(trigger) {
     this.trigger = trigger;
+    this.defaultExpanded = this.trigger.getAttribute('aria-expanded') === 'true';
     this.trigger.disclosure = this;
-    console.log('Instantiated new Disclosure object.');
+    this._init();
   }
 
   /**
@@ -47,6 +53,16 @@ class Disclosure {
    */
   _control = (enable = true) => {
     const action = enable ? 'enable' : 'disable';
+
+    if (enable) {
+      this.trigger.addEventListener('click', this._handleClick);
+      this.trigger.hidden = false;
+    } else {
+      this.trigger.removeEventListener('click', this._handleClick);
+      this.trigger.hidden = true;
+    }
+
+    this._toggle(this.defaultExpanded);
     this.trigger.dispatchEvent(this._createEvent(action));
     this.enabled = enable;
   };
@@ -71,6 +87,20 @@ class Disclosure {
    * @method
    */
   _handleClick = () => this._toggle(!this.expanded);
+
+  /**
+   * Initializes interactivity.
+   *
+   * @protected
+   * @method
+   */
+  _init = () => {
+    try {
+      this.enable();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   /**
    * Manages expanded/collapsed state of disclosure.
