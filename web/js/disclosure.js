@@ -59,7 +59,10 @@ class Disclosure {
    * @protected
    * @method
    */
-  _createEvent = (type) => new CustomEvent(this.name, {detail: {action: type}});
+  _createEvent = (type) => new CustomEvent(this.name, {
+    bubbles: true,
+    detail: {action: type}
+  });
 
   /**
    * Handles click events on this.trigger.
