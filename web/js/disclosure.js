@@ -33,6 +33,16 @@ class Disclosure {
   }
 
   /**
+   * Manages enabled/disabled state of disclosure.
+   *
+   * @param {boolean} enable
+   *   Whether to enable or disable the disclosure.
+   * @protected
+   * @method
+   */
+  _control = (enable = true) => this.expanded = expand;
+
+  /**
    * Creates a custom disclosure event.
    *
    * @return {Object}
@@ -43,12 +53,31 @@ class Disclosure {
   _createEvent = (type) => null;
 
   /**
+   * Handles click events on this.trigger.
+   *
+   * @protected
+   * @method
+   */
+  _handleClick = () => this._toggle(!this.expanded);
+
+  /**
+   * Manages expanded/collapsed state of disclosure.
+   *
+   * @param {boolean} expand
+   *   Whether to expand or collapse the disclosure.
+   *
+   * @protected
+   * @method
+   */
+  _toggle = (expand = true) => this.expanded = expand;
+
+  /**
    * Collapses the disclosure.
    *
    * @public
    * @method
    */
-  collapse = () => null;
+  collapse = () => this._toggle(false);
 
   /**
    * Disables the disclosure.
@@ -56,7 +85,7 @@ class Disclosure {
    * @public
    * @method
    */
-  disable = () => null;
+  disable = () => this._control(false)
 
   /**
    * Enables the disclosure.
@@ -64,7 +93,7 @@ class Disclosure {
    * @public
    * @method
    */
-  enable = () => null;
+  enable = () => this._control()
 
   /**
    * Expands the disclosure.
@@ -72,7 +101,7 @@ class Disclosure {
    * @public
    * @method
    */
-  expand = () => null;
+  expand = () => this._toggle();
 
   /**
    * Returns enabled status of this disclosure.
