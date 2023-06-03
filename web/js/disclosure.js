@@ -17,6 +17,11 @@ class Disclosure {
   _expanded;
 
   /**
+   * @member {string}
+   */
+  name = 'disclosure';
+
+  /**
    * @member {Object}
    */
   trigger;
@@ -40,7 +45,11 @@ class Disclosure {
    * @protected
    * @method
    */
-  _control = (enable = true) => this._expanded = expand;
+  _control = (enable = true) => {
+    const action = enable ? 'enable' : 'disable';
+    this.trigger.dispatchEvent(this._createEvent(action));
+    this._enabled = enable;
+  };
 
   /**
    * Creates a custom disclosure event.
@@ -50,7 +59,7 @@ class Disclosure {
    * @protected
    * @method
    */
-  _createEvent = (type) => null;
+  _createEvent = (type) => new CustomEvent(this.name, {detail: {action: type}});
 
   /**
    * Handles click events on this.trigger.
@@ -69,7 +78,11 @@ class Disclosure {
    * @protected
    * @method
    */
-  _toggle = (expand = true) => this._expanded = expand;
+  _toggle = (expand = true) => {
+    const action = expand ? 'expand' : 'collapse';
+    this.trigger.dispatchEvent(this._createEvent(action));
+    this._expanded = expand;
+  };
 
   /**
    * Collapses the disclosure.
