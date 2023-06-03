@@ -102,7 +102,7 @@ figcaption {
 }
 
 figcaption a:focus {
-  outline-color: var(--border-white);
+  outline-color: var(--color-white);
 }
 
 footer {
@@ -142,6 +142,7 @@ footer {
   color: var(--color-white);
   font-weight: bold;
   letter-spacing: -0.75px;
+  line-height: 1.5;
 }
 
 .latest-news__list {
@@ -193,11 +194,83 @@ footer {
 	outline-offset: 2px;
 }
 
+.nav__link[aria-current="page"] {
+  text-decoration-thickness: 4px;
+}
+
 @media (hover: hover) and (pointer: fine) {
 	.nav__link:hover {
 	  background: transparent;
 		text-decoration-color: var(--color-mysin);
 	}
+}
+
+@media screen and (max-width: 52.625rem) {
+  /* We need to keep the user from scrolling when the nav is _expanded. */
+  [data-nav-expanded] {
+    position: fixed;
+  }
+
+  /* These styles pertain at ALL times when js is available. */
+  [data-js-enabled] .nav__toggle {
+    background: var(--color-white);
+    border-style: none;
+    border-radius: 3px;
+    padding: 0.125rem 0.5rem;
+    text-transform: lowercase;
+  }
+
+  [data-js-enabled] .nav__toggle:focus {
+    outline: 2px dotted var(--color-white);
+    outline-offset: 2px;
+  }
+
+  [data-js-enabled] .header__inner {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  /* These styles take effect as soon as the disclosure is _enabled. */
+  .nav__links[data-disclosure-expanded] {
+    align-items: center;
+    background: var(--color-outer-space);
+    border-top: 1px solid var(--color-white);
+    color: var(--color-white);
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    gap: 1rem;
+    height: calc(100vh - calc(var(--branding-size) + 2rem + 1.5rem + 1rem + 1px));
+    justify-content: center;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 100%;
+  }
+
+  .nav__links[data-disclosure-expanded="true"] {
+    display: flex;
+  }
+
+  .nav__links[data-disclosure-expanded="false"] {
+    display: none;
+  }
+
+  .nav__links[data-disclosure-expanded] .nav__link {
+    padding: 0.25rem;
+    position: relative;
+    text-decoration: none;
+    top: -2rem;
+    width: 90%;
+  }
+
+  .nav__links[data-disclosure-expanded] .nav__link[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-thickness: 0.375rem;
+  }
 }
 
 .footer__links {

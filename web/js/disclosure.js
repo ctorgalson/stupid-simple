@@ -80,15 +80,18 @@ class Disclosure {
   _control = (enable = true) => {
     const action = enable ? 'enable' : 'disable';
 
+    this._toggle(this.defaultExpanded);
+
     if (enable) {
       this.trigger.addEventListener('click', this._handleClick);
       this.trigger.hidden = false;
     } else {
       this.trigger.removeEventListener('click', this._handleClick);
       this.trigger.hidden = true;
+      this.contents.forEach((content) =>
+        content.removeAttribute('data-disclosure-expanded'));
     }
 
-    this._toggle(this.defaultExpanded);
     this.trigger.dispatchEvent(this._createEvent(action));
     this._enabled = enable;
   };
