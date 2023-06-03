@@ -150,11 +150,20 @@ footer {
   padding: 0;
 }
 
-.latest-news__item {
+.latest-news__item + .latest-news__item {
+  margin-top: 1rem;
 }
 
 .latest-news__item > h3 {
+  flex-grow: 2;
   margin: 0;
+}
+
+.latest-news__item > button {
+}
+
+.latest-news__item > p {
+  margin-left: 2rem;
 }
 
 .latest-news__item > h3 > a {
@@ -242,4 +251,10 @@ footer {
 		gap: var(--space);
 		justify-content: flex-end;
 	}
+
+  .latest-news__item {
+    align-items: first-baseline;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
