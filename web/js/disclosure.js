@@ -46,6 +46,18 @@ class Disclosure {
   /**
    * Creates a new disclosure instance.
    *
+   * @param {Object} trigger
+   *   The HTML element to use to expand and collapse this disclosure.
+   * @param {Object|Object[]|undefined} contents
+   *   A NodeList, Element, or nothing. Will be converted into an array for
+   *   use in the disclosure.
+   * @param {Object} settings
+   *   A simple key: value object containing configuration options for the
+   *   disclosure.
+   * @param {boolean} settings.autoStart
+   *   Whether or not to automatically enable disclosure interactivity on
+   *   instantiation. When set to false, a caller will have to manually call
+   *   .enable() on the disclosure object.
    * @constructor
    */
   constructor(trigger, contents = undefined, settings = {}) {
