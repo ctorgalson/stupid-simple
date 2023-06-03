@@ -114,6 +114,7 @@ class Disclosure {
   _toggle = (expand = true) => {
     const action = expand ? 'expand' : 'collapse';
     this.trigger.dispatchEvent(this._createEvent(action));
+    this.trigger.setAttribute('aria-expanded', expand);
     this._expanded = expand;
   };
 
