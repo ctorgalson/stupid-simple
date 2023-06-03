@@ -7,9 +7,21 @@
 class Disclosure {
 
   /**
+   * @member {Array}
+   */
+  contents;
+
+  /**
    * @member {boolean}
    */
   defaultExpanded;
+
+  /**
+   * @member {Object}
+   */
+  defaults = {
+    autoStart: true,
+  };
 
   /**
    * @member {boolean}
@@ -36,8 +48,12 @@ class Disclosure {
    *
    * @constructor
    */
-  constructor(trigger) {
+  constructor(trigger, contents, settings = {}) {
     this.trigger = trigger;
+    this.contents = typeof contents[Symbol.iterator] === 'function'
+      ? [...contents]
+      : [contents];
+    this.settings = {...this.defaults, ...settings};
     this.defaultExpanded = this.trigger.getAttribute('aria-expanded') === 'true';
     this.trigger.disclosure = this;
     this._init();
@@ -96,7 +112,9 @@ class Disclosure {
    */
   _init = () => {
     try {
-      this.enable();
+      if (this.settings.autoStart) {
+        this.enable();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -115,6 +133,8 @@ class Disclosure {
     const action = expand ? 'expand' : 'collapse';
     this.trigger.dispatchEvent(this._createEvent(action));
     this.trigger.setAttribute('aria-expanded', expand);
+    this.contents.forEach((content) =>
+      content.setAttribute('data-disclosure-expanded', expand));
     this._expanded = expand;
   };
 

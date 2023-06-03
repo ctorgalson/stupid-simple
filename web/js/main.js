@@ -8,6 +8,7 @@
 
   window.addEventListener('disclosure', (event) => console.log(event.detail.action, event.target));
 
-  triggers.forEach((trigger) => new Disclosure(trigger));
+  triggers.forEach((trigger) =>
+    new Disclosure(trigger, trigger.nextElementSibling));
 
 })();
