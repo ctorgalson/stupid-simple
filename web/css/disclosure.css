@@ -1,0 +1,29 @@
+.latest-news__summary-toggle:not([hidden]) {
+  background: var(--color-outer-space);
+  border: 2px solid var(--color-outer-space);
+  color: var(--color-white);
+  height: auto;
+  margin: 0.25rem 0 0;
+  padding: 0.25rem 0.5rem;
+  width: 5rem;
+}
+
+.latest-news__summary-toggle:not([hidden]):focus {
+  outline: 2px dotted var(--color-outer-space);
+  outline-offset: 1px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .latest-news__summary-toggle:not([hidden]):hover {
+		background: var(--color-mysin);
+    color: var(--color-outer-space);
+  }
+}
+
+.latest-news__summary-toggle[aria-expanded="true"]:not([hidden]) + p {
+  display: block;
+}
+
+.latest-news__summary-toggle[aria-expanded="false"]:not([hidden]) + p {
+  display: none;
+}
