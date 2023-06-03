@@ -1,0 +1,245 @@
+:root {
+  --branding-size: 100px;
+  /* Colour names from Pick colour picker. */
+  --color-coral-red: #fd4546;
+  --color-mysin: #ffb636;
+  --color-outer-space: #2b3b46;
+  --color-tower-gray: #adbbbc;
+  --color-white: #efefef;
+	--content-border-radius: calc(var(--space) / 4);
+	--content-box-shadow: 0px 11px 6px -8px rgba(0,0,0,0.4);
+	--content-min-height: calc(15 * var(--space));
+  --font-family: Verdana, Geneva, sans-serif;
+	--font-size: 1rem;
+	--font-size-large: 2rem;
+	--font-size-medium: 1.25rem;
+  --font-size-small: 0.875rem;
+  --font-weight-bold: 600;
+	--footer-link-icon-size: calc(2 * var(--space));
+  --line-height: 1.5;
+  --space: 1rem;
+}
+
+html {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+}
+
+body {
+  background: var(--color-tower-gray);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+}
+
+a {
+	color: inherit;
+  text-decoration-thickness: 2px;
+}
+
+a:focus {
+	outline: 2px dotted var(--color-outer-space);
+	outline-offset: 1px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	a:hover {
+		background: var(--color-mysin);
+		color: inherit;
+		text-decoration-thickness: 4px;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-outer-space);
+}
+
+h1 {
+	font-size: var(--font-size-large);
+}
+
+h1 + p {
+	font-size: var(--font-size-medium);
+}
+
+header {
+  background: var(--color-outer-space);
+  color: var(--color-white);
+}
+
+main {
+  background: var(--color-white);
+	border-radius:	var(--content-border-radius);
+	box-shadow: var(--content-box-shadow);
+	box-sizing: border-box;
+  color: var(--color-outer-space);
+  flex: 1;
+  margin: var(--space);
+	min-height: var(--content-min-height);
+  padding: var(--space);
+}
+
+figure {
+  background: var(--color-outer-space);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+figure img {
+  display: block;
+  max-width: 100%;
+}
+
+figcaption {
+  border-top: 1px solid var(--color-tower-gray);
+  color: var(--color-white);
+  font-size: var(--font-size-small);
+  padding: calc(var(--space) / 2) 0;
+  text-align: center;
+}
+
+figcaption a:focus {
+  outline-color: var(--border-white);
+}
+
+footer {
+  background: var(--color-outer-space);
+  color: var(--color-white);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  figcaption a:hover {
+    color: var(--color-outer-space);
+  }
+}
+
+.footer__inner {
+  padding: calc(2 * var(--space)) var(--space);
+}
+
+.header__inner {
+  display: grid;
+  grid-template-columns: fit-content(var(--branding-size)) auto;
+  grid-template-rows: 1fr;
+  grid-gap: var(--space);
+  padding: var(--space);
+}
+
+.branding__link {
+  display: flex;
+  flex-direction: column;
+}
+
+.branding__link:focus {
+	outline-color: var(--color-white);
+	outline-offset: 4px;
+}
+
+.branding__text {
+  color: var(--color-white);
+  font-weight: bold;
+  letter-spacing: -0.75px;
+}
+
+.latest-news__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.latest-news__item {
+}
+
+.latest-news__item > h3 {
+  margin: 0;
+}
+
+.latest-news__item > h3 > a {
+  font-weight: normal;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.branding__link:hover {
+		background: transparent;
+		text-decoration-color: var(--color-mysin);
+	}
+}
+
+.nav__links{
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav__link {
+  display: block;
+}
+
+.nav__link:focus {
+	outline-color: var(--color-white);
+	outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.nav__link:hover {
+	  background: transparent;
+		text-decoration-color: var(--color-mysin);
+	}
+}
+
+.footer__links {
+	justify-content: center;
+	display: flex;
+	gap: var(--space);
+}
+
+.footer__link {
+	color: var(--color-white);
+	padding: calc(var(--space) / 2);
+	border-radius: 50%;
+}
+
+.footer__link > svg {
+	display: block;
+	fill: currentcolor;
+	width: var(--footer-link-icon-size);
+}
+
+.footer__link:focus {
+	outline-color: var(--color-white);
+	outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.footer__link:hover {
+		background: var(--color-tower-gray);
+		text-decoration: underline;
+		text-decoration-thickness: 3px;
+    text-decoration-color: var(--color-mysin);
+		color: var(--color-outer-space);
+	}
+}
+
+@media screen and (min-width: 52.625rem) {
+	:root {
+		--page-width: 48.625rem;
+	}
+
+	.header__inner,
+	main,
+	.footer__inner {
+		margin-left: auto;
+		margin-right: auto;
+	  width: var(--page-width);
+	}
+
+	.nav__links{
+		flex-direction: row;
+		gap: var(--space);
+		justify-content: flex-end;
+	}
+}
