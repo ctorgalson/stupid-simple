@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+			/**
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+			*/
+			@import url(/css/slides.css);
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Stupid Simple
+
+---
+
+# Me
+
+---
+
+# Annertech
+
+---
+
+class: center, middle
+
+# <span>01</span> Progressive Enhancement
+
+---
+
+class: center, middle
+
+# <span>02</span> Disclosure Markup
+
+---
+
+class: middle
+
+# Pre-javascript, Pre-disclosure
+
+```html
+<li class="latest-news__item">
+	<h3><a href="#">Sed ultricies ante ut orci faucibus rhoncus</a></h3>
+	<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+</li>
+```
+
+---
+
+class: center, middle
+
+# <span>03</span> Class File
+
+---
+
+class: key-slide key-slide--public-api
+
+# <span>04</span> Public API
+
+---
+
+# <span>04</span> Public API: members
+
+--
+```javascript
+_enabled;
+```
+--
+```javascript
+_expanded;
+```
+
+---
+
+# <span>04</span> Public API: public methods
+
+--
+```javascript
+isEnabled = () => this._enabled;
+```
+--
+```javascript
+isExpanded = () => this._expanded;
+```
+--
+```javascript
+expand = () => null;
+```
+--
+```javascript
+collapse = () => null;
+```
+--
+```javascript
+enable = () => null;
+```
+--
+```javascript
+disable = () => null;
+```
+
+---
+
+# <span>04</span> Public API: protected methods
+
+--
+```javascript
+_createEvent = (type) => null;
+
+```
+
+---
+
+# <span>04</span> Public API: class file
+
+```javascript
+class Disclosure {
+  _enabled;
+  _expanded;
+  trigger;
+
+  constructor(trigger) {
+    this.trigger = trigger;
+    this.trigger.disclosure = this;
+  }
+
+  _createEvent = (type) => null;
+  collapse = () => null;
+  disable = () => null;
+  enable = () => null;
+  expand = () => null;
+  isEnabled = () => this._enabled;
+  isExpanded = () => this._expanded;
+}
+```
+
+---
+
+class: key-slide key-slide--public-api-plumbing
+
+# <span>05</span> Public API Plumbing
+
+---
+
+class: center, middle
+
+# <span>06</span> Custom Events
+
+---
+
+class: center, middle
+
+# <span>07</span> Enable and Disable
+
+---
+
+class: center, middle
+
+# <span>08</span> Expand and Collapse
+
+---
+
+class: center, middle
+
+# <span>09</span> Minimum Viable Product
+
+---
+
+class: center, middle
+
+# <span>10</span> Settings and Contents
+
+---
+
+class: center, middle
+
+# Bonus: Mobile Navigation
+
+    </textarea>
+    <script src="./js/remark-latest.min.js">
+    </script>
+    <script>
+      const slideshow = remark.create({
+				highlightStyle: 'solarized-light',
+				highlightLines: true,
+			});
+    </script>
+  </body>
+</html>

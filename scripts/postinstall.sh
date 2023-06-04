@@ -3,6 +3,9 @@
 # Provides "package management" for the version of remarkjs that's convenient
 # to use in the browser (i.e. the version from remarkjs.com not via npm).
 #
+# This is a cheap alternative to cloning the repo and building it (@see
+# https://github.com/gnab/remark/wiki/Contributing#building).
+#
 # Runs on npm's postinstall hook.
 set -e
 

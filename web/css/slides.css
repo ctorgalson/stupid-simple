@@ -1,0 +1,113 @@
+:root {
+  --heading-font: 'league_gothicregular';
+  --body-font: 'roboto_slabregular';
+  --mono-font: 'roboto_monomedium';
+  --line-height: 1.3125;
+  --line-height-headings: 1.0625;
+  /* https://coolors.co/383838-707070-a8a8a8-e0e0e0-ececec */
+	--color-true-black: #000;
+	--color-true-white: #fff;
+	--color-jet: #383838;
+	--color-dim-gray: #707070;
+  --color-silver: #a8a8a8;
+  --color-platinum: #e0e0e0;
+  --color-anti-flash-white: #ececec;
+	--color-highlight: #f60;
+}
+
+@font-face {
+  font-family: 'league_gothicregular';
+  src: url('/fonts/leaguegothic-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'roboto_monomedium';
+  src: url('/fonts/robotomono-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'roboto_slabregular';
+  src: url('/fonts/RobotoSlab-Regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+	color: var(--color-jet);
+}
+
+h1, h2, h3 {
+  font-family: 'league_gothicregular';
+}
+
+h1 {
+	border-bottom: 0.375rem solid currentcolor;
+	color: var(--color-jet);
+	filter: drop-shadow(0.0625rem 0.0625rem 0.0625rem var(--color-silver));
+}
+
+h1 span {
+	color: var(--color-highlight);
+}
+
+.remark-slide {
+}
+
+.key-slide {
+  /* background: var(--color-dim-gray); */
+	/* background: linear-gradient(312deg, var(--color-jet) 0%, rgba(0, 0, 0, 1) 100%); */
+  /* background: linear-gradient(312deg, var(--color-true-black) 0%, rgba(255, 255, 255, 0.3) 100%); */
+	color: var(--color-anti-flash-white);
+	position: relative;
+}
+
+.key-slide::before {
+	background-size: cover;
+	/* filter: blur(2px) opacity(70%) brightness(0.7); */
+	filter: blur(2px) grayscale(40%);
+	content: "";
+	position: absolute;
+  top: -5px;
+  right:-5px;
+  bottom: -5px;
+  left: -5px;
+}
+
+.key-slide h1 {
+	color: var(--color-white);
+	filter: drop-shadow(0.0625rem 0.0625rem 0.0625rem var(--color-dim-gray));
+	position: relative;
+	z-index: 5;
+}
+
+.key-slide h1 span {
+	color: var(--color-highlight);
+}
+
+.key-slide .remark-slide-number {
+	z-index: 5;
+}
+
+.key-slide--public-api::before {
+  background-image: url(/img/slides/pexels-photo-3345876.jpeg)
+}
+
+.key-slide--public-api-plumbing::before {
+	background-image: url(/img/slides/pexels-photo-7616004.jpeg);
+}
+
+.remark-code {
+	font-size: 1rem;
+}
+
+.remark-code,
+.remark-inline-code {
+	border-radius: 5px;
+  border: 2px solid var(--color-jet);
+	font-family: 'roboto_monomedium';
+	max-width: 75%;
+}
