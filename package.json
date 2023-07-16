@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "live-server ./web --watch ./web",
     "start": "npm run serve",
-    "postinstall": "./scripts/postinstall.sh"
+    "postinstall": "postinstall"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,18 @@
   },
   "homepage": "https://github.com/ctorgalson/stupid-simple#readme",
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "chalk": "^5.2.0",
+    "commander": "^10.0.1",
+    "highlight.js": "^11.8.0",
+    "live-server": "^1.2.2",
+    "postinstall": "^0.8.0",
+    "reveal.js": "^4.5.0"
+  },
+  "postinstall": {
+    "highlight.js/styles/github-dark.css": "copy web/css/lib/",
+    "reveal.js/dist/reveal.css": "copy web/css/lib/",
+    "reveal.js/dist/theme/league.css": "copy web/css/lib/",
+    "reveal.js/dist/reveal.js": "copy web/js/lib/",
+    "reveal.js/plugin/highlight/highlight.js": "copy web/js/lib/"
   }
 }

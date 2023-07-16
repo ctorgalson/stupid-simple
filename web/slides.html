@@ -1,203 +1,995 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title>Stupid Simple | KISS-inspired accessible javascript</title>
     <meta charset="utf-8">
-    <style>
-			/**
-      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
-      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
-
-      body { font-family: 'Droid Serif'; }
-      h1, h2, h3 {
-        font-family: 'Yanone Kaffeesatz';
-        font-weight: normal;
-      }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
-			*/
-			@import url(/css/slides.css);
-    </style>
+    <link rel="stylesheet" href="/css/lib/github-dark.css">
+    <link rel="stylesheet" href="/css/lib/league.css">
+    <link rel="stylesheet" href="/css/lib/reveal.css">
+    <link rel="stylesheet" href="/css/slides.css">
   </head>
   <body>
-    <textarea id="source">
+    <div class="reveal">
+      <div class="slides">
 
-class: center, middle
+        <!-- Slide: Title -->
+        <section
+          class="c-slide c-slide--simple c-slide--title"
+          data-background="var(--color-strikemaster)"
+        >
+          <div class="c-slide__inner">
+            <h2>Stupid Simple</h2>
+          </div>
+        </section>
+        <!-- /Slide: Title -->
 
-# Stupid Simple
+        <!-- Slide: Me -->
+        <section
+          class="c-slide c-slide--simple c-slide--me"
+          data-background="var(--color-old-lavender)"
+        >
+          <div class="c-slide__inner">
+            <h2>Christopher Torgalson</h2>
+            <ul class="icon-list" role="list">
+              <li class="icon-list__item">
+                <a class="icon-list__link" href="https://www.github.com/ctorgalson">
+                  <svg class="icon-list__icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                  github.com/ctorgalson
+                </a>
+              </li>
+              <li class="icon-list__item">
+                <a class="icon-list__link" href="https://www.drupal.org/u/bedlam">
+                  <svg class="icon-list__icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Drupal</title><path d="M15.78 5.113C14.09 3.425 12.48 1.815 11.998 0c-.48 1.815-2.09 3.425-3.778 5.113-2.534 2.53-5.405 5.4-5.405 9.702a9.184 9.185 0 1018.368 0c0-4.303-2.871-7.171-5.405-9.702M6.72 16.954c-.563-.019-2.64-3.6 1.215-7.416l2.55 2.788a.218.218 0 01-.016.325c-.61.625-3.204 3.227-3.527 4.126-.066.186-.164.18-.222.177M12 21.677a3.158 3.158 0 01-3.158-3.159 3.291 3.291 0 01.787-2.087c.57-.696 2.37-2.655 2.37-2.655s1.774 1.988 2.367 2.649a3.09 3.09 0 01.792 2.093A3.158 3.158 0 0112 21.677m6.046-5.123c-.068.15-.223.398-.431.405-.371.014-.411-.177-.686-.583-.604-.892-5.864-6.39-6.848-7.455-.866-.935-.122-1.595.223-1.94C10.736 6.547 12 5.285 12 5.285s3.766 3.574 5.336 6.016c1.57 2.443 1.029 4.556.71 5.253"/></svg>
+                  drupal.org/u/bedlam
+                </a>
+              </li>
+              <li class="icon-list__item">
+                <a class="icon-list__link" href="https://hostux.social/@bedlam">
+                  <svg class="icon-list__icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mastodon</title><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
+                  hostux.social/@bedlam
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <!-- /Slide: Me -->
 
----
+        <!-- Slide: Annertech -->
+        <section
+          class="c-slide c-slide--simple c-slide--annertech"
+          data-background="var(--color-annertech)"
+        >
+          <div class="c-slide__inner">
+            <svg xmlns="http://www.w3.org/2000/svg" width="500" height="90" viewBox="0 0 500 90" version="1.1"><path d="m 479.75364,32.643356 a 19.877081,19.877068 0 0 0 -17.25112,8.620995 h -0.20971 V 1.2229996 h -19.02 V 88.235321 h 19.0747 V 60.635374 c 0,-6.282248 2.46185,-12.787884 9.95678,-12.787884 7.49038,0 8.62556,6.505636 8.62556,12.787884 V 88.212527 H 500 V 55.287714 C 499.991,41.656422 493.3895,32.643356 479.7582,32.643356 Z m -375.54919,0 c -7.390079,0 -12.787889,2.201978 -17.251109,8.698497 h -0.20972 V 34.425909 H 67.769223 v 53.786618 h 19.074698 v -27.90084 c 0,-6.710789 2.20654,-12.464197 9.95678,-12.464197 9.437049,0 8.625559,9.017624 8.625559,14.155572 v 26.209465 h 19.02455 V 54.941232 c 0,-13.179954 -5.78076,-22.297876 -20.2418,-22.297876 z m 61.54601,0 c -7.39008,0 -12.78789,2.201978 -17.25112,8.698497 h -0.20971 v -6.915944 h -19.01088 v 53.786618 h 19.07471 v -27.90084 c 0,-6.710789 2.20654,-12.464197 9.95677,-12.464197 9.43706,0 8.62556,9.017624 8.62556,14.155572 v 26.209465 h 19.07015 V 54.941232 c -0.0228,-13.179954 -5.78989,-22.297876 -20.25548,-22.297876 z m 82.4443,29.879428 c 0,-18.349817 -10.79563,-29.879428 -29.46002,-29.879428 -17.50642,0 -29.77004,10.791059 -29.77004,28.721452 a 28.867357,28.867338 0 0 0 4.64559,16.471525 c 5.38413,7.959945 14.99899,12.149629 26.48758,12.149629 11.17858,0 22.18391,-4.791467 26.35081,-15.240605 0.4103,-1.044001 0.74767,-2.115358 1.00297,-3.204949 h -18.32704 a 9.3276393,9.3276333 0 0 1 -8.29731,4.928236 h -0.83429 c -7.86421,0 -11.9536,-4.189684 -11.9536,-11.953594 h 40.14167 z m -39.83622,-9.031301 c 1.15797,-5.561933 5.76708,-8.493344 11.32446,-8.493344 a 10.7318,10.731793 0 0 1 10.79563,8.493344 z m 62.13867,-10.253102 h -0.20971 v -8.812472 h -19.08838 v 53.786618 h 19.0747 V 66.502756 c 0,-9.231895 2.62596,-16.252694 13.21188,-16.252694 a 15.454887,15.454877 0 0 1 8.06936,1.787113 V 33.687358 h -3.69732 c -7.40375,0 -13.69057,2.945089 -17.36053,9.551023 z m 50.4814,-24.951192 h -19.0747 v 16.13872 h -6.18651 v 15.723856 h 6.18651 v 38.062762 h 19.0747 V 50.149765 h 10.80475 V 34.425909 h -10.80475 z m 72.56047,44.235595 a 40.342269,40.342243 0 0 0 -0.73855,-7.827736 C 390.08794,40.9589 379.91234,32.643356 364.07905,32.643356 c -17.50642,0 -29.77003,10.791059 -29.77003,28.721452 0,1.299304 0.0684,2.598607 0.20971,3.893352 1.75065,16.015629 14.39265,24.727802 30.91434,24.727802 12.32288,0 24.32207,-5.767084 27.36746,-18.482026 h -18.33616 c -2.09712,3.560549 -5.02397,4.928237 -9.11792,4.928237 -7.85966,0 -11.94905,-4.189685 -11.94905,-11.953595 h 40.15535 l -0.0137,-1.960353 z m -39.83623,-9.031301 c 1.15798,-5.561933 5.76709,-8.493344 11.32447,-8.493344 a 10.7318,10.731793 0 0 1 10.78195,8.493344 z m 44.18548,-0.0046 a 31.265372,31.265352 0 0 0 -1.10783,8.342897 c 0,16.252696 13.32129,28.092316 29.25031,28.092316 4.65014,0.04559 9.24102,-0.998412 13.41703,-3.040827 V 70.74259 c -2.63052,2.334188 -6.01783,3.647168 -9.53735,3.692758 -7.85965,0 -13.41703,-5.457076 -13.41703,-13.207309 a 12.910985,12.910977 0 0 1 13.0979,-13.111571 16.868165,16.868154 0 0 1 9.85648,3.770261 V 35.752567 A 26.031682,26.031665 0 0 0 426.8651,32.606884 c -14.00513,0.04103 -25.47549,8.269955 -28.97677,20.889158 z M 43.656865,34.430468 v 5.233687 C 39.67689,34.945631 33.171249,32.643356 26.984735,32.643356 11.092188,32.643356 2.2992041e-4,45.850665 2.2992041e-4,61.264511 A 30.326226,30.326206 0 0 0 4.7871419,77.736035 26.268748,26.268731 0 0 0 27.148858,89.999639 c 6.29137,0 12.901867,-2.461838 16.248146,-7.76391 h 0.209712 v 5.972239 h 19.088381 v -53.7775 z m -0.319127,30.148407 v 0.159564 A 11.52213,11.522123 0 1 1 20.383356,62.705142 c 0,-0.209712 0,-0.405747 0.07294,-0.61546 0.948265,-6.824763 7.61347,-14.009686 14.3425,-19.886186 -3.510402,7.795823 9.450731,11.201367 8.538939,22.375379 z" alt="Annertech word mark"/></svg>
+          </div>
+        </section>
+        <!-- /Slide: Annertech -->
 
-# Me
+        <!-- Slide: Title (2) -->
+        <section
+          class="c-slide c-slide--simple c-slide--title"
+          data-background="var(--color-strikemaster)"
+        >
+          <div class="c-slide__inner">
+            <h2>Stupid Simple</h2>
+          </div>
+        </section>
+        <!-- /Slide: Title (2) -->
 
----
+        <!-- Chapter: A. Functionality -->
+        <section
+          class="c-slide c-slide--chapter"
+          data-background-color="var(--color-bleached-cedar)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">A</span>
+              <span class="c-slide__banner-title">Functionality</span>
+            </h2>
+            <p class="fragment fade-left">What should the javascript do?</p>
+          </div>
+        </section>
+        <!-- /Chapter: A. Functionality -->
 
-# Annertech
+        <!-- Chapter: A. Functionality | Bulb -->
+        <section
+          class="c-slide c-slide--simple c-slide--bulb"
+          data-background-color="var(--color-bleached-cedar)"
+          data-background-image="/img/lamp-g6b0fd4f38_1280.png"
+          data-background-size="auto 70%"
+        >
+          <div class="c-slide__inner">
+            <p class="point fragment fade-in">mostly booleans</p>
+            <p class="credit">Image credit: <a href="https://pixabay.com/vectors/lamp-light-bulb-filament-clear-311117/" target="_blank">Clker-Free-Vector-Images</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: A. Functionality | html -->
 
----
+        <!-- Chapter: B. Accessibility -->
+        <section
+          class="c-slide c-slide--chapter c-slide--accessibility"
+          data-background-color="var(--color-mamba)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">B</span>
+              <span class="c-slide__banner-title">Accessibility</span>
+            </h2>
+            <p class="fragment fade-in">How do we ensure access?</p>
+          </div>
+        </section>
+        <!-- /Chapter: B. Accessibility -->
 
-class: center, middle
+        <!-- Chapter: B. Accessibility | html -->
+        <section
+          class="c-slide c-slide--simple c-slide--html"
+          data-background-image="/img/ms-html.svg"
+          data-background-color="var(--color-mamba)"
+          data-background-size="auto 110%"
+        >
+          <div class="c-slide__inner">
+            <p class="point fragment fade-in">progressive enhancement</p>
+            <p class="point fragment fade-in">WAI-ARIA</p>
+            <p class="credit">Image credit: <a href="https://pixabay.com/vectors/lamp-light-bulb-filament-clear-311117://fonts.google.com/icons?selected=Material+Symbols+Outlined:html:FILL@0;wght@400;GRAD@0;opsz@48&icon.query=html" target="_blank">Google Fonts</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: B. Accessibility | Bulb -->
 
-# <span>01</span> Progressive Enhancement
+        <!-- Chapter: C. Re-usability -->
+        <section
+          class="c-slide c-slide--chapter c-slide--reusability"
+          data-background-color="var(--color-schooner)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">C</span>
+              <span class="c-slide__banner-title">Re-usability</span>
+            </h2>
+            <p class="fragment fade-left">How do we keep it usable?</p>
+          </div>
+        </section>
+        <!-- /Chapter: C. Re-usability -->
 
----
+        <!-- Chapter: C. Re-usability | Neutral President -->
+        <section
+          class="c-slide c-slide--chapter c-slide--neutral-president"
+          data-background-color="var(--color-schooner)"
+        >
+          <div class="c-slide__inner">
+            <figure>
+              <img src="/img/neutral.png" alt="Image of Futurama character, the Neutral President">
+              <figcaption>
+                <a href="https://www.youtube.com/watch?v=vfsl8_o4VKc&t=4s" target="_blank">&laquo;I have no strong feelings one way or the other.&raquo;</a>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+        <!-- /Chapter: C. Re-usability | Neutral President -->
 
-class: center, middle
+        <!-- Chapter: 00. The Disclosure -->
+        <section
+          class="c-slide c-slide--content c-slide--the-disclosure"
+          data-background-color="var(--color-old-lavender)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">00</span>
+              <span class="c-slide__banner-title">The Disclosure</span>
+            </h2>
+            <div class="fragment fade-in">
+              <div class="disclosure">
+                <button aria-expanded="false" type="button" hidden>Summary</button>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium sint cupidatat.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /Chapter: 00. The Disclosure -->
 
-# <span>02</span> Disclosure Markup
+        <!-- Chapter: 01. Progressive Enhancement -->
+        <section
+          class="c-slide c-slide--content c-slide--progressive-enhancement"
+          data-background-color="var(--color-mamba)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">01</span>
+              <span class="c-slide__banner-title">Progressive Enhancement</span>
+            </h2>
+            <div class="fragment fade-in">
+              <div class="disclosure ignore-js">
+                <button aria-expanded="false" type="button" hidden>
+                  Summary
+                </button>
+                <p>
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium sint cupidatat.
+                </p>
+              </div>
+            </div>
+            <div class="fragment fade-in">
+              <div class="disclosure">
+                <button aria-expanded="false" type="button" hidden>
+                  Summary
+                </button>
+                <p>
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium sint cupidatat.
+                </p>
+              </div>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/01-progressive-enhancement" target="_blank">Progressive Enhancement</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 01. Progressive Enhancement -->
 
----
+        <!-- Chapter: 02. Disclosure Markup -->
+        <section
+          class="c-slide c-slide--content c-slide--disclosure-markup"
+          data-background-color="var(--color-strikemaster)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">02</span>
+              <span class="c-slide__banner-title">Disclosure Markup</span>
+            </h2>
+            <div class="r-stack">
+              <div class="fragment fade-in">
+                <pre>
+                  <code
+                    class="language-html"
+                    data-line-numbers
+                    data-trim
+                  >
+                    <p>
+                      Sed ut perspiciatis unde omnis iste natus error sit
+                      voluptatem accusantium sint cupidatat.
+                    </p>
+                  </code>
+                </pre>
+              </div>
+              <div class="fragment fade-in">
+                <pre>
+                  <code
+                    class="language-html"
+                    data-line-numbers
+                    data-trim
+                  >
+                    <button aria-expanded="false" type="button" hidden>
+                      Summary
+                    </button>
+                    <p>
+                      Sed ut perspiciatis unde omnis iste natus error sit
+                      voluptatem accusantium sint cupidatat.
+                    </p>
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/02-disclosure-markup" target="_blank">Disclosure Markup</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 02. Disclosure Markup -->
 
-class: middle
+        <!-- Chapter: 03. Class File -->
+        <section
+          class="c-slide c-slide--content c-slide--class-file"
+          data-background-color="var(--color-old-lavender)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">03</span>
+              <span class="c-slide__banner-title">Class File</span>
+            </h2>
+            <div class="r-stack">
+              <div class="fragment fade-in">
+                <pre>
+                  <code
+                    class="language-javascript"
+                    data-line-numbers
+                    data-trim
+                  >
+                    class Disclosure {
+                      trigger;
 
-# Pre-javascript, Pre-disclosure
+                      constructor(trigger) {
+                        this.trigger = trigger;
+                        console.log('Instantiated new Disclosure object.');
+                      }
+                    }
+                  </code>
+                </pre>
+              </div>
+              <div class="fragment fade-in">
+                <pre>
+                  <code
+                    class="language-javascript"
+                    data-line-numbers
+                    data-trim
+                  >
+                    (function() {
+                      const triggers = document.querySelectorAll('.latest-news__summary-toggle');
 
-```html
-<li class="latest-news__item">
-	<h3><a href="#">Sed ultricies ante ut orci faucibus rhoncus</a></h3>
-	<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
-</li>
-```
+                      if (!triggers) {
+                        return;
+                      }
 
----
+                      triggers.forEach((trigger) => new Disclosure(trigger));
+                    })();
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/03-class-file" target="_blank">Class File</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 03. Class File -->
 
-class: center, middle
+        <!-- Chapter: 04. Public API -->
+        <section
+          class="c-slide c-slide--content c-slide--public-api"
+          data-background-color="var(--color-mamba)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">04</span>
+              <span class="c-slide__banner-title">Public API</span>
+            </h2>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-line-numbers data-trim>
+                  enable = () => null;
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-line-numbers data-trim>
+                  disable = () => null;
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-line-numbers data-trim>
+                  expand = () => null;
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-line-numbers data-trim>
+                  collapse = () => null;
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-line-numbers data-trim>
+                  isEnabled = () => null;
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-line-numbers data-trim>
+                  isExpanded = () => null;
+                </code>
+              </pre>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/04-public-api" target="_blank">Public API</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 04. Public API -->
 
-# <span>03</span> Class File
+        <!-- Chapter: 04. Public API | Events -->
+        <section
+          class="c-slide c-slide--content c-slide--public-api-events"
+          data-background-color="var(--color-strikemaster)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">04</span>
+              <span class="c-slide__banner-title">Public API (events)</span>
+            </h2>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-line-numbers data-trim>
+                  _createEvent = (type) => null;
+                </code>
+              </pre>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/04-public-api" target="_blank">Public API</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 04. Public API | Events -->
 
----
+        <!-- /Chapter: 05. Public API Plumbing -->
+        <section
+          class="c-slide c-slide--content c-slide--public-api-plumbing"
+          data-background-color="var(--color-old-lavender)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">05</span>
+              <span class="c-slide__banner-title">Public API Plumbing</span>
+            </h2>
+            <div class="r-stack">
+              <div class="fragment fade-in-then-out one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    enable = () => null;
+                  </code>
+                </pre>
+              </div>
+              <div class="fragment fade-in-then one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    enable = () => this._control();
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <div class="r-stack">
+              <div class="fragment fade-in-then-out one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    disable = () => null;
+                  </code>
+                </pre>
+              </div>
+              <div class="fragment fade-in one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    disable = () => this._control(false);
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <div class="r-stack">
+              <div class="fragment fade-in-then-out one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    expand = () => null;
+                  </code>
+                </pre>
+              </div>
+              <div class="fragment fade-in one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    expand = () => this._toggle();
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <div class="r-stack">
+              <div class="fragment fade-in-then-out one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    collapse = () => null;
+                  </code>
+                </pre>
+              </div>
+              <div class="fragment fade-in one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    collapse = () => this._toggle(false);
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <div class="r-stack">
+              <div class="fragment fade-in-then-out one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    isEnabled = () => null;
+                  </code>
+                </pre>
+              </div>
+              <div class="fragment fade-in one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    isEnabled = () => this.enabled;
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <div class="r-stack">
+              <div class="fragment fade-in-then-out one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    isExpanded = () => null;
+                  </code>
+                </pre>
+              </div>
+              <div class="fragment fade-in-then one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    isExpanded = () => this.expanded;
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/05-public-api" target="_blank">Public API Plumbing</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 05. Public API Plumbing -->
 
-class: key-slide key-slide--public-api
+        <!-- Chapter: 06. Custom Events -->
+        <section
+          class="c-slide c-slide--content c-slide--custom-events"
+          data-background-color="var(--color-mamba)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">06</span>
+              <span class="c-slide__banner-title">Custom Events</span>
+            </h2>
+            <div class="r-stack">
+              <div class="fragment fade-in-then-out one-liner">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    _createEvent = (type) => null;
+                  </code>
+                </pre>
+              </div>
+              <div class="fragment fade-in-then-semi-out">
+                <pre>
+                  <code class="language-javascript" data-line-numbers data-trim>
+                    _createEvent = (type) => new CustomEvent(this.name, {
+                      bubbles: true,
+                      detail: {action: type}
+                    });
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/06-custom-events" target="_blank">Custom Events</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 06. Custom Events -->
 
-# <span>04</span> Public API
+        <!-- Chapter: 07. Enable and Disable -->
+        <section
+          class="c-slide c-slide--content c-slide--enable-and-disable-control"
+          data-background-color="var(--color-strikemaster)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">07</span>
+              <span class="c-slide__banner-title">Enable and Disable</span>
+            </h2>
+            <div class="fragment fade-in">
+              <pre>
+                <code class="language-javascript" data-line-numbers data-trim>
+                  _init = () => {
+                    try {
+                      this.enable();
+                    } catch (error) {
+                      console.error(error);
+                    }
+                  };
+                </code>
+              </pre>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/07-enable-and-disable" target="_blank">Enable and Disable</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 07. Enable and Disable -->
 
----
+        <!-- Chapter: 07. Enable and Disable | _control() -->
+        <section
+          class="c-slide c-slide--content c-slide--enable-and-disable"
+          data-background-color="var(--color-old-lavender)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">07</span>
+              <span class="c-slide__banner-title">Enable and Disable</span>
+            </h2>
+            <div class="fragment fade-in">
+              <pre>
+                <code
+                  class="language-javascript"
+                  data-line-numbers="1-15|5,6|8,9|12|13|14|1-15|5,8"
+                  data-trim
+                >
+                  _control = (enable = true) => {
+                    const action = enable ? 'enable' : 'disable';
 
-# <span>04</span> Public API: members
+                    if (enable) {
+                      this.trigger.addEventListener('click', this._handleClick);
+                      this.trigger.hidden = false;
+                    } else {
+                      this.trigger.removeEventListener('click', this._handleClick);
+                      this.trigger.hidden = true;
+                    }
 
---
-```javascript
-_enabled;
-```
---
-```javascript
-_expanded;
-```
+                    this._toggle(this.defaultExpanded);
+                    this.trigger.dispatchEvent(this._createEvent(action));
+                    this.enabled = enable;
+                  };
+                </code>
+              </pre>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/07-enable-and-disable" target="_blank">Enable and Disable</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 07. Enable and Disable | _control() -->
 
----
+        <!-- Chapter: 08. Expand and Collapse -->
+        <section
+          class="c-slide c-slide--content c-slide--mvp"
+          data-background-color="var(--color-mamba)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">08</span>
+              <span class="c-slide__banner-title">Expand and Collapse</span>
+            </h2>
+            <div class="fragment fade-in">
+              <pre>
+                <code
+                  class="language-javascript"
+                  data-line-numbers
+                  data-trim
+                >
+                  _handleClick = () => this._toggle(!this.expanded);
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in">
+              <pre>
+                <code
+                  class="language-javascript"
+                  data-line-numbers="1-6|3|4|5|1-6"
+                  data-trim
+                >
+                  _toggle = (expand = true) => {
+                    const action = expand ? 'expand' : 'collapse';
+                    this.trigger.dispatchEvent(this._createEvent(action));
+                    this.trigger.setAttribute('aria-expanded', expand);
+                    this.expanded = expand;
+                  };
+                </code>
+              </pre>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/08-expand-and-collapse" target="_blank">Expand and Collapse</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 08. Expand and Collapse -->
 
-# <span>04</span> Public API: public methods
+        <!-- Chapter: 09. Minimum Viable Product -->
+        <section
+          class="c-slide c-slide--content c-slide--mvp-2"
+          data-background-color="var(--color-strikemaster)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">09</span>
+              <span class="c-slide__banner-title">Minimum Viable Product</span>
+            </h2>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-trim>
+                    this._init(); // called by: constructor()
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-trim>
+                  this.enable(); // called by: _init()
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-trim>
+                  this._control(); // called by: enable(), disable()
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-trim>
+                  this._handleClick(); // enabled by: _control()
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-trim>
+                  this._toggle(); // called by: _handleClick(), expand(), collapse()
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-trim>
+                  this._createEvent(); // called by: _control(), _toggle()
+                </code>
+              </pre>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/09-minimum-viable-product" target="_blank">Minimum Viable Product</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 09. Minimum Viable Product -->
 
---
-```javascript
-isEnabled = () => this._enabled;
-```
---
-```javascript
-isExpanded = () => this._expanded;
-```
---
-```javascript
-expand = () => null;
-```
---
-```javascript
-collapse = () => null;
-```
---
-```javascript
-enable = () => null;
-```
---
-```javascript
-disable = () => null;
-```
+        <!-- Chapter: 09. Minimum Viable Product -->
+        <section
+          class="c-slide c-slide--content c-slide--the-disclosure"
+          data-background-color="var(--color-old-lavender)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">09</span>
+              <span class="c-slide__banner-title">Minimum Viable Product</span>
+            </h2>
+            <ul role="list" class="checklist">
+              <li class="fragment fade-in point"><img src="/img/ms-check-box--checked.svg" alt="Checked checkbox"> progressive enhancement</li>
+              <li class="fragment fade-in point"><img src="/img/ms-check-box--checked.svg" alt="Checked checkbox"> WAI-ARIA</li>
+              <li class="fragment fade-in point"><img src="/img/ms-check-box--checked.svg" alt="Checked checkbox"> enable / disable</li>
+              <li class="fragment fade-in point"><img src="/img/ms-check-box--checked.svg" alt="Checked checkbox"> expand / collapse</li>
+              <li class="fragment fade-in point"><img src="/img/ms-check-box--checked.svg" alt="Checked checkbox"> custom events</li>
+              <li class="fragment fade-in point"><img src="/img/ms-check-box--unchecked.svg" alt="Unchecked checkbox"> non-sibling elements</li>
+              <li class="fragment fade-in point"><img src="/img/ms-check-box--unchecked.svg" alt="Unchecked checkbox"> multiple disclosures</li>
+              <li class="fragment fade-in point"><img src="/img/ms-check-box--unchecked.svg" alt="Unchecked checkbox"> manual enable</li>
+            </ul>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/09-minimum-viable-product" target="_blank">Minimum Viable Product</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 09. Minimum Viable Product -->
 
----
+        <!-- Chapter: 10. Settings and Contents -->
+        <section
+          class="c-slide c-slide--content c-slide--settings-and-contents"
+          data-background-color="var(--color-mamba)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">10</span>
+              <span class="c-slide__banner-title">Settings and Contents</span>
+            </h2>
+            <div class="r-stack">
+              <div class="fragment fade-in-then-semi-out">
+                <pre>
+                  <code class="language-html" data-trim data-line-numbers>
+                    <!-- Markup -->
+                    <button aria-expanded="true" class="toggle" type="button" hidden>
+                      Summary
+                    </button>
+                    <p>Adipisci velit, sed quia non numquam eius modi tempora
+                       incidunt ut labore et dolore magnam aliquam.</p>
+                  </code>
+                </pre>
+                <pre>
+                  <code class="language-css" data-trim data-line-numbers>
+                    /* Styles */
+                    .toggle[aria-expanded="true"]:not([hidden]) + p {
+                      display: block;
+                    }
 
-# <span>04</span> Public API: protected methods
+                    .toggle[aria-expanded="false"]:not([hidden]) + p {
+                      display: none;
+                    }
+                  </code>
+                </pre>
+              </div>
+              <p class="fragment fade-in point">too opinionated!</p>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/10-settings-and-contents" target="_blank">Settings and Contents</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 10. Settings and Contents -->
 
---
-```javascript
-_createEvent = (type) => null;
+        <!-- Chapter: 10. Settings and Contents | non-sibling elements -->
+        <section
+          class="c-slide c-slide--content c-slide--non-sibling-elements"
+          data-background-color="var(--color-strikemaster)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">10</span>
+              <span class="c-slide__banner-title">Settings and Contents</span>
+            </h2>
+            <p class="fragment fade-in">(Multiple) Non-Sibling Elements</p>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-trim data-line-numbers>
+                  constructor(trigger, contents = undefined)
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in one-liner">
+              <pre>
+                <code class="language-javascript" data-trim data-line-numbers>
+                  this.contents = this._getContents(contents);
+                </code>
+              </pre>
+            </div>
+            <div class="fragment fade-in">
+              <pre>
+                <code
+                  class="language-javascript"
+                  data-trim data-line-numbers="5-6"
+                >
+                  _toggle = (expand = true) => {
+                    const action = expand ? 'expand' : 'collapse';
+                    this.trigger.dispatchEvent(this._createEvent(action));
+                    this.trigger.setAttribute('aria-expanded', expand);
+                    this.contents.forEach((content) =>
+                      content.setAttribute('data-disclosure-expanded', expand));
+                    this.expanded = expand;
+                  };
+                </code>
+              </pre>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/10-settings-and-contents" target="_blank">Settings and Contents</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 10. Settings and Contents | non-sibling elements -->
 
-```
+        <!-- Chapter: 10. Settings and Contents | manual enable -->
+        <section
+          class="c-slide c-slide--content c-slide--the-disclosure"
+          data-background-color="var(--color-old-lavender)"
+        >
+          <div class="c-slide__inner">
+            <h2 class="c-slide__banner">
+              <span class="c-slide__banner-chapter">10</span>
+              <span class="c-slide__banner-title">Settings and Contents</span>
+            </h2>
+            <p class="fragment fade-in">Manually run <code>enable()</code></p>
+            <div class="fragment fade-in">
+              <pre>
+                <code
+                  class="language-javascript"
+									data-line-numbers="7-9|19|22|67-69"
+                  data-trim
+                >
+									class Disclosure {
 
----
+										contents;
 
-# <span>04</span> Public API: class file
+										defaultExpanded;
 
-```javascript
-class Disclosure {
-  _enabled;
-  _expanded;
-  trigger;
+										defaults = {
+											autoStart: true,
+										};
 
-  constructor(trigger) {
-    this.trigger = trigger;
-    this.trigger.disclosure = this;
-  }
+										enabled;
 
-  _createEvent = (type) => null;
-  collapse = () => null;
-  disable = () => null;
-  enable = () => null;
-  expand = () => null;
-  isEnabled = () => this._enabled;
-  isExpanded = () => this._expanded;
-}
-```
+										expanded;
 
----
+										name = 'disclosure';
 
-class: key-slide key-slide--public-api-plumbing
+										trigger;
 
-# <span>05</span> Public API Plumbing
+										constructor(trigger, contents = undefined, settings = {}) {
+											this.trigger = trigger;
+											this.contents = this._getContents(contents);
+											this.settings = {...this.defaults, ...settings};
+											this.defaultExpanded = this.trigger.getAttribute('aria-expanded') === 'true';
+											this.trigger.disclosure = this;
+											this._init();
+										}
 
----
+										_control = (enable = true) => {
+											const action = enable ? 'enable' : 'disable';
 
-class: center, middle
+											if (enable) {
+												this.trigger.addEventListener('click', this._handleClick);
+												this.trigger.hidden = false;
+											} else {
+												this.trigger.removeEventListener('click', this._handleClick);
+												this.trigger.hidden = true;
+											}
 
-# <span>06</span> Custom Events
+											this._toggle(this.defaultExpanded);
+											this.trigger.dispatchEvent(this._createEvent(action));
+											this.enabled = enable;
+										};
 
----
+										_createEvent = (type) => new CustomEvent(this.name, {
+											bubbles: true,
+											detail: {action: type}
+										});
 
-class: center, middle
+										_getContents = (contents) => {
+											let contentsList;
 
-# <span>07</span> Enable and Disable
+											if (typeof contents !== 'undefined') {
+												contentsList = typeof contents[Symbol.iterator] === 'function'
+													? [...contents]
+													: [contents]
+											} else {
+												contentsList = [this.trigger.nextElementSibling];
+											}
 
----
+											return contentsList;
+										};
 
-class: center, middle
+										_handleClick = () => this._toggle(!this.expanded);
 
-# <span>08</span> Expand and Collapse
+										_init = () => {
+											try {
+												if (this.settings.autoStart) {
+													this.enable();
+												}
+											} catch (error) {
+												console.error(error);
+											}
+										};
 
----
+										_toggle = (expand = true) => {
+											const action = expand ? 'expand' : 'collapse';
+											this.trigger.dispatchEvent(this._createEvent(action));
+											this.trigger.setAttribute('aria-expanded', expand);
+											this.contents.forEach((content) =>
+												content.setAttribute('data-disclosure-expanded', expand));
+											this.expanded = expand;
+										};
 
-class: center, middle
+										collapse = () => this._toggle(false);
 
-# <span>09</span> Minimum Viable Product
+										disable = () => this._control(false)
 
----
+										enable = () => this._control()
 
-class: center, middle
+										expand = () => this._toggle();
 
-# <span>10</span> Settings and Contents
+										isEnabled = () => this.enabled;
 
----
+										isExpanded = () => this.expanded;
 
-class: center, middle
+									}
+                </code>
+              </pre>
+            </div>
+            <p class="credit">Code: <a href="https://github.com/ctorgalson/stupid-simple/tree/10-settings-and-contents" target="_blank">Settings and Contents</a></p>
+          </div>
+        </section>
+        <!-- /Chapter: 10. Settings and Contents | manual enable -->
 
-# Bonus: Mobile Navigation
+        <!-- Slide: Title -->
+        <section
+          class="c-slide c-slide--simple c-slide--title"
+          data-background="var(--color-bleached-cedar)"
+        >
+          <div class="c-slide__inner">
+            <h2>Stupid Simple</h2>
+          </div>
+        </section>
+        <!-- /Slide: Title -->
+      </div>
+    </div>
 
-    </textarea>
-    <script src="./js/remark-latest.min.js">
+    </script>
+    <script src="/js/disclosure.js"></script>
+    <script src="/js/lib/reveal.js"></script>
+    <script src="/js/lib/highlight.js"></script>
+    <script>
+      let deck = new Reveal({
+        center: false,
+        hash: true,
+        plugins: [
+          RevealHighlight,
+        ],
+        slideNumber: true,
+      });
+      deck.initialize();
     </script>
     <script>
-      const slideshow = remark.create({
-				highlightStyle: 'solarized-light',
-				highlightLines: true,
-			});
+      (function() {
+        const triggerSelector = '.disclosure:not(.ignore-js) > button';
+        const triggers = document.querySelectorAll(triggerSelector);
+        const disclosures = [];
+
+        if (!triggers) {
+          return;
+        }
+
+        triggers.forEach((t) => disclosures.push(new Disclosure(t)));
+      })();
     </script>
   </body>
 </html>
