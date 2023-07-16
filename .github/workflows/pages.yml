@@ -1,0 +1,22 @@
+---
+name: stupid-simple
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Deploy to Github Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: main
+          build_dir: web
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
