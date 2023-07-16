@@ -4,6 +4,7 @@
   const navToggle = document.querySelector('.nav__toggle');
   const lastFocusable = navToggle.nextElementSibling.querySelector('a:last-child');
   const breakpoint = window.matchMedia('(max-width: 52.625rem)');
+  const inertElements = document.querySelectorAll('.branding, main, footer');
 
   if (triggers) {
     triggers.forEach((trigger) =>
@@ -34,11 +35,13 @@
     function handleDisclosure(event) {
       switch (event.detail.action) {
         case 'expand':
+          inertElements.forEach((inertElement) => inertElement.inert = true);
           window.addEventListener('keydown', handleKeydown);
           document.body.setAttribute('data-nav-expanded', '');
           break;
 
         case 'collapse':
+          inertElements.forEach((inertElement) => inertElement.inert = false);
           window.removeEventListener('keydown', handleKeydown);
           document.body.removeAttribute('data-nav-expanded');
           break;
